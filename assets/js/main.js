@@ -14,6 +14,9 @@
         menuBtn.className = "nav-menu";
       }
     }
+    function hire(){
+        window.location.href ="https://t.me/MrElite7";
+    }
 
 /* ----- ADD SHADOW ON NAVIGATION BAR WHILE SCROLLING ----- */
     // window.onscroll = function() {headerShadow()};
