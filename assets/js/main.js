@@ -1,9 +1,4 @@
 
-    /* Ariweb */
-
-
-
-
 /* ----- NAVIGATION BAR FUNCTION ----- */
     function myMenuFunction(){
       var menuBtn = document.getElementById("myNavMenu");
@@ -15,29 +10,29 @@
       }
     }
     function hire(){
-        window.location.href ="https://t.me/MrElite7";
+      window.location.href ="https://t.me/MrElite7";
     }
 
 /* ----- ADD SHADOW ON NAVIGATION BAR WHILE SCROLLING ----- */
-    // window.onscroll = function() {headerShadow()};
+    window.onscroll = function() {headerShadow()};
 
-    // function headerShadow() {
-    //   const navHeader =document.getElementById("header");
+    function headerShadow() {
+      const navHeader =document.getElementById("header");
 
-    //   if (document.body.scrollTop > 50 || document.documentElement.scrollTop >  50) {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop >  50) {
 
-    //     navHeader.style.boxShadow = "0 1px 6px rgba(0, 0, 0, 0.1)";
-    //     navHeader.style.height = "70px";
-    //     navHeader.style.lineHeight = "70px";
+        navHeader.style.boxShadow = "0 1px 6px rgba(0, 0, 0, 0.1)";
+        navHeader.style.height = "70px";
+        navHeader.style.lineHeight = "70px";
 
-    //   } else {
+      } else {
 
-    //     navHeader.style.boxShadow = "none";
-    //     navHeader.style.height = "90px";
-    //     navHeader.style.lineHeight = "90px";
+        navHeader.style.boxShadow = "none";
+        navHeader.style.height = "90px";
+        navHeader.style.lineHeight = "90px";
 
-    //   }
-    // }
+      }
+    }
 
 
 /* ----- TYPING EFFECT ----- */
@@ -124,3 +119,37 @@
   }
 
   window.addEventListener('scroll', scrollActive)
+
+  // تابع برای گرفتن پارامترهای URL
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+// بررسی وضعیت ارسال فرم پس از بارگذاری صفحه
+document.addEventListener('DOMContentLoaded', function() {
+    var status = getUrlParameter('status');
+    var messageElement = document.getElementById('form-status-message');
+
+    if (messageElement) {
+        if (status === 'success') {
+            messageElement.textContent = 'Your message was sent successfully!';
+            messageElement.style.color = 'green';
+            setTimeout(function() {
+                messageElement.textContent = ''; // پیام را بعد از چند ثانیه پاک می‌کند
+                // حذف پارامتر status از URL
+                window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+            }, 5000);
+        } else if (status === 'error') {
+            messageElement.textContent = 'Error sending message. Please try again.';
+            messageElement.style.color = 'red';
+            setTimeout(function() {
+                messageElement.textContent = ''; // پیام را بعد از چند ثانیه پاک می‌کند
+                // حذف پارامتر status از URL
+                window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+            }, 5000);
+        }
+    }
+});
